@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Publisher;
+=======
+use App\Publisher;
+>>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
 use Illuminate\Http\Request;
 
 class PublishersController extends Controller
