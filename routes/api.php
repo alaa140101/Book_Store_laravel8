@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('create-payment', 'App\Http\controllers\PurchaseController@createPayment');
+Route::post('execute-payment', 'App\Http\controllers\PurchaseController@executePayment');
+
+Route::group(['prefix'=>'paypal'], function(){
+    Route::post('/create-payment', 'App\Http\controllers\PaypalPaymentController@createPayment');
+    Route::post('/execute-payment', 'App\Http\controllers\PaypalPaymentController@executePayment');
+});
