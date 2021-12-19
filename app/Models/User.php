@@ -71,11 +71,7 @@ class User extends Authenticatable
 
     public function ratings()
     {
-<<<<<<< HEAD
         return $this->hasMany('App\Models\Rating');
-=======
-        return $this->hasMany('App\Rating');
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
     }
 
     public function rated(Book $book)
@@ -90,19 +86,11 @@ class User extends Authenticatable
 
     public function booksInCart()
     {
-<<<<<<< HEAD
         return $this->belongsToMany('App\Models\Book')->withPivot(['number_of_copies', 'bought'])->wherePivot('bought', False);
-=======
-        return $this->belongsToMany('App\Book')->withPivot(['number_of_copies', 'bought'])->wherePivot('bought', False);
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
     }
 
     public function reatedpurches()
     {
-<<<<<<< HEAD
         return $this->belongsToMany('App\Models\Book')->withPivot(['bought'])->wherePivot('bought', true);
-=======
-        return $this->belongsToMany('App\Book')->withPivot(['bought'])->wherePivot('bought', true);
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
     }
 }

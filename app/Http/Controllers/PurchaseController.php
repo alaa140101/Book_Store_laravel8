@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\User;
-=======
-use App\User;
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
 use PayPal\Api\Item;
 use PayPal\Api\Payer;
 use PayPal\Api\Amount;
