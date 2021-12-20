@@ -43,11 +43,7 @@ class CartController extends Controller
         if ($oldQuantity > 1) {
             auth()->user()->booksInCart()->updateExistingPivot($book->id, ['number_of_copies' => --$oldQuantity]);
         } else {
-<<<<<<< HEAD
             auth()->user()->booksInCart()->detach($book->id);
-=======
-            auth()->user()->bookInCart()->detach($book->id);
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
         }
 
         return redirect()->back();

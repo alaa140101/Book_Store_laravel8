@@ -24,13 +24,8 @@ class PurchaseController extends Controller
     {
         $apiContext = new ApiContext(
             new OAuthTokenCredential(
-<<<<<<< HEAD
                 'AVTI4E88SdSvUIPxff5_S0bpRXba0LDgwZs2-l8u5JfN7KbnGHZTOZC_7Zxnl3SN_kz6UfuB3xcTiLAk', 
                 'ENQCLfz81J70OpXTpcK4VnwxOEekCGXw_DT8SDzoVcMoyTgGg4LWesDOItVwtootBnHatcisL1HIniHU')
-=======
-                'AV1hLmmCCiDjt3Wo7CuhSmZlba26KmwVdocffVMc0exNpQRVyXGEBlggMVVX_WS9lCPHOWekj8hfunf8', 
-                'EG3k08X0uKRFAmUWParjMHtoVohX8hGM5SZ7J50HsYYyy5uPOXXWCp2VrVtjBQFB1jpNIewua16B6ugx')
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
         );
 
         $shipping = 0;
@@ -99,13 +94,8 @@ class PurchaseController extends Controller
     {
         $apiContext = new ApiContext(
             new OAuthTokenCredential(
-<<<<<<< HEAD
                 'AVTI4E88SdSvUIPxff5_S0bpRXba0LDgwZs2-l8u5JfN7KbnGHZTOZC_7Zxnl3SN_kz6UfuB3xcTiLAk', 
                 'ENQCLfz81J70OpXTpcK4VnwxOEekCGXw_DT8SDzoVcMoyTgGg4LWesDOItVwtootBnHatcisL1HIniHU')
-=======
-                'AV1hLmmCCiDjt3Wo7CuhSmZlba26KmwVdocffVMc0exNpQRVyXGEBlggMVVX_WS9lCPHOWekj8hfunf8', 
-                'EG3k08X0uKRFAmUWParjMHtoVohX8hGM5SZ7J50HsYYyy5uPOXXWCp2VrVtjBQFB1jpNIewua16B6ugx')
->>>>>>> d44f364f34555b6dac108d96c14e4d7fcfdac7e3
         );
     
         $paymentId = $request->paymentID;
