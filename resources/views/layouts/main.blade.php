@@ -154,20 +154,17 @@
                                   <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right text-right mt-2" aria-labelledby="navbarDropdown">
+                                  @can('update-books')
+                                  <a href="{{ route('admin.index') }}" class="dropdown-item text-right">لوحة الإدارة</a>
+                                  @endcan
                                   <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 dropdown-item">اعدادات الحساب</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('خروج') }}
-                                    </a>
+                                  </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                    @can('update-books')
-                                        <a href="{{ route('admin.index') }}" class="dropdown-item text-right">لوحة الإدارة</a>
-                                    @endcan
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                      @csrf
+                                  </form>
                                 </div>
                             </li>
                         @endguest
