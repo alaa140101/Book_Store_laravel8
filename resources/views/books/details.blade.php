@@ -119,7 +119,7 @@
                        @endif
                        @else 
                        <div class="alert alert-danger" role="alert">
-                         يجي شراء الكتاب لتسطيع تقييمه
+                         يرجى شراء الكتاب لتسطيع تقييمه
                        </div>
                        @endif 
                    @endauth
