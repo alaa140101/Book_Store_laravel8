@@ -153,18 +153,80 @@
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                   <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right text-right mt-2" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-left px-2 text-right mt-2" aria-labelledby="navbarDropdown">
                                   @can('update-books')
                                   <a href="{{ route('admin.index') }}" class="dropdown-item text-right">لوحة الإدارة</a>
                                   @endcan
-                                  <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 dropdown-item">اعدادات الحساب</a>
-                                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('خروج') }}
-                                  </a>
+                            <!-- Responsive Settings Options -->
+                            <div class="pt-4 pb-1 border-t border-gray-200 px-2`">
+                                <div class="flex items-center px-4">
+                                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                        <div class="flex-shrink-0">
+                                            <img class="h-10 w-10 rounded-full object-cover ml-2" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                        </div>
+                                    @endif
 
-                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                      @csrf
-                                  </form>
+                                    <div class="ml-3">
+                                        <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 space-y-1">
+                                    <!-- Account Management -->
+                                    <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" class="dropdown-item">
+                                        {{ __('الملف الشخصي') }}
+                                    </x-jet-responsive-nav-link>
+
+                                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                        <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')" class="dropdown-item">
+                                            {{ __('API Tokens') }}
+                                        </x-jet-responsive-nav-link>
+                                    @endif
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                        this.closest('form').submit();" class="dropdown-item">
+                                            {{ __('الخروج') }}
+                                        </x-jet-responsive-nav-link>
+                                    </form>
+
+                                    <!-- Team Management -->
+                                    @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
+                                        <div class="border-t border-gray-200"></div>
+
+                                        <div class="block px-4 py-2 text-xs text-gray-400" class="dropdown-item">
+                                            {{ __('ادارة الفريق') }}
+                                        </div>
+
+                                        <!-- Team Settings -->
+                                        <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')" class="dropdown-item">
+                                            {{ __('اعدادات الفريق') }}
+                                        </x-jet-responsive-nav-link>
+
+                                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
+                                            <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')" class="dropdown-item">
+                                                {{ __('انشاء فريق جديد') }}
+                                            </x-jet-responsive-nav-link>
+                                        @endcan
+
+                                        <div class="border-t border-gray-200"></div>
+
+                                        <!-- Team Switcher -->
+                                        <div class="block px-4 py-2 text-xs text-gray-400" class="dropdown-item">
+                                            {{ __('تبديل الفريق') }}
+                                        </div>
+
+                                        @foreach (Auth::user()->allTeams() as $team)
+                                            <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
+                                        @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
                                 </div>
                             </li>
                         @endguest
